@@ -680,7 +680,7 @@ class TAFParserTest extends AbstractWeatherCodeParserTest<TAF> {
     void testParseWithRMKInTempo() throws ParseException {
         // GIVEN a TAF with remark in second tempo.
         String message = "" +
-                "TAF CZBF 300939Z 3010/3022 VRB03KT 6SM -SN OVC015" +
+                "TAF CZBF 300939Z 3010/3022 VRB03KT 6SM -SN OVC015 " +
                 "TEMPO 3010/3012 11/2SM -SN OVC009 FM301200 10008KT 2SM -SN OVC010 " +
                 "TEMPO 3012/3022 3/4SM -SN VV007 RMK FCST BASED ON AUTO OBS. NXT FCST BY 301400Z";
         // WHEN parsing the event.
@@ -699,7 +699,7 @@ class TAFParserTest extends AbstractWeatherCodeParserTest<TAF> {
     void testParseWithRMK() throws ParseException {
         // GIVEN a TAF with remark.
         String message = "" +
-                "TAF CZBF 300939Z 3010/3022 VRB03KT 6SM -SN OVC015 RMK FCST BASED ON AUTO OBS. NXT FCST BY 301400Z" +
+                "TAF CZBF 300939Z 3010/3022 VRB03KT 6SM -SN OVC015 RMK FCST BASED ON AUTO OBS. NXT FCST BY 301400Z " +
                 "TEMPO 3010/3012 11/2SM -SN OVC009 FM301200 10008KT 2SM -SN OVC010 " +
                 "TEMPO 3012/3022 3/4SM -SN VV007";
         // WHEN parsing the event.
@@ -767,10 +767,10 @@ class TAFParserTest extends AbstractWeatherCodeParserTest<TAF> {
     @Test
     void testParse() throws ParseException {
         String code = "" +
-            "TAF AMD KEWR 191303Z 1913/2018 09006KT 5SM -RA BR BKN007 OVC025" +
-            "FM191600 17007KT P6SM BKN020" +
-            "FM192100 26008KT P3SM SCT030 SCT050" +
-            "FM200000 29005KT P4SM SCT050" +
+            "TAF AMD KEWR 191303Z 1913/2018 09006KT 5SM -RA BR BKN007 OVC025 " +
+            "FM191600 17007KT P6SM BKN020 " +
+            "FM192100 26008KT P3SM SCT030 SCT050 " +
+            "FM200000 29005KT P4SM SCT050 " +
             "FM200600 VRB03KT P9SM SCT050\n";
 
         TAF taf = parser.parse(code);

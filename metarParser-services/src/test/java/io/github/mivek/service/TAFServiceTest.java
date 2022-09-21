@@ -56,21 +56,21 @@ class TAFServiceTest extends AbstractWeatherCodeServiceTest<TAF> {
     @Test
     void testFormat() throws ParseException {
         String tafMessage = "" +
-                "TAF " +
-                "AMD TAF " +
-                "AMD LFPG 241332Z 2413/2518 01008KT 7000 BKN015 TX13/2414Z TN03/2505Z " +
-                "BECMG 2413/2415 BKN040 " +
-                "BECMG 2415/2417 CAVOK " +
-                "BECMG 2509/2511 BKN030 " +
-                "TEMPO 2514/2516 36015G25KT " +
-                "BECMG 2516/2518 CAVOK";
+                "TAF\n" +
+                "AMD TAF\n" +
+                " AMD LFPG 241332Z 2413/2518 01008KT 7000 BKN015 TX13/2414Z TN03/2505Z\n" +
+                " BECMG 2413/2415 BKN040\n" +
+                " BECMG 2415/2417 CAVOK\n" +
+                " BECMG 2509/2511 BKN030\n" +
+                " TEMPO 2514/2516 36015G25KT\n" +
+                " BECMG 2516/2518 CAVOK";
         String formatted = "" +
-                "TAF AMD LFPG 241332Z 2413/2518 01008KT 7000 BKN015 TX13/2414Z TN03/2505Z " +
-                "BECMG 2413/2415 BKN040 " +
-                "BECMG 2415/2417 CAVOK " +
-                "BECMG 2509/2511 BKN030 " +
-                "TEMPO 2514/2516 36015G25KT " +
-                "BECMG 2516/2518 CAVOK";
+                "TAF AMD LFPG 241332Z 2413/2518 01008KT 7000 BKN015 TX13/2414Z TN03/2505Z\n" +
+                " BECMG 2413/2415 BKN040\n" +
+                " BECMG 2415/2417 CAVOK\n" +
+                " BECMG 2509/2511 BKN030\n" +
+                " TEMPO 2514/2516 36015G25KT\n" +
+                " BECMG 2516/2518 CAVOK\n";
 
         // When formating the message
         String result = sut.format(tafMessage);
