@@ -30,7 +30,7 @@ This project is divided into multiple maven module
 -   metarParser-entities: Contains the model and the enumerations
 -   metarParser-parsers: Contains the parsers and the commands
 -   metarParser-services: Contains a service allowing you to parse or retrieve METAR and TAF
--   metarParser-spi: Contains the SPI 
+-   metarParser-spi: Contains the SPI
 -   metarParser-commons: Contains utility and internationalization classes
 
 ## Adding the dependency
@@ -64,7 +64,7 @@ The application contains numerous enumerations to represent data.
 - DepositType: to represent the type of deposit on a runway.
 - DepositCoverage: to represent the percentage of the runway covered by the deposit.
 - DepositThickness: to represent the thickness of the deposit.
-- DepositBrakingCapacity: to represent the braking capacity on the runway.    
+- DepositBrakingCapacity: to represent the braking capacity on the runway.
 - Phenomenon: to represent a phenomenon.
 - RunwayInfoTrend: to represent the visibility trend on a runway.
 - WeatherChangeTime: to represent a trend.
@@ -89,7 +89,7 @@ The airport class is composed of
 
 #### Cloud
 
-In this application a cloud is composed of 
+In this application a cloud is composed of
 
 -   CloudQuantity
 -   CloudType (optional)
@@ -105,11 +105,11 @@ The runway information can represent either a visual range or a deposit.
 
 If the object represents a visual range the field `minRange` is non-null.
 
-The runway information is composed of 
+The runway information is composed of
 
 -   The name of the runway
 -   The minimal visibility on the runway (optional)
--   The indicator of the visual range. Either "greater than", "less than" or empty. (optional)    
+-   The indicator of the visual range. Either "greater than", "less than" or empty. (optional)
 -   The maximal visibility on the runway (optional)
 -   The trend of the visibility (optional)
 -   The type of deposit (optional)
@@ -128,7 +128,7 @@ The visibility class is composed of
 #### WeatherCondition
 
 The weather condition is class to represent a meteorological phenomenon.
-A weather condition is composed of 
+A weather condition is composed of
 
 -   an intensity (optional)
 -   a descriptive (optional)
@@ -136,7 +136,7 @@ A weather condition is composed of
 
 #### Wind
 
-The wind class is composed of 
+The wind class is composed of
 
 -   the speed
 -   the direction
@@ -178,7 +178,7 @@ Trends inherit from `AbstractWeatherContainer` so they have the following fields
 
 By default, airports are loaded from the temporary file [airport.dat](metarParser-spi/src/main/resources/data/airports.dat)
 It is possible to provide your own source of airports via spi.
-See [spi](metarParser-spi/README.md) module for details. 
+See [spi](metarParser-spi/README.md) module for details.
 
 ## Examples
 
@@ -208,10 +208,10 @@ Metar metar = service.retrieveFromAirport(icao);
 Use the TAFFacade to decode the taf.
 
 ```java
-String message = "TAF LFPG 150500Z 1506/1612 17005KT 6000 SCT012 \n" 
+String message = "TAF LFPG 150500Z 1506/1612 17005KT 6000 SCT012 \n"
                   +"TEMPO 1506/1509 3000 BR BKN006 PROB40 \n"
                   +"TEMPO 1506/1508 0400 BCFG BKN002 PROB40 \n"
-                  +"TEMPO 1512/1516 4000 -SHRA FEW030TCU BKN040 \n" 
+                  +"TEMPO 1512/1516 4000 -SHRA FEW030TCU BKN040 \n"
                   +"BECMG 1520/1522 CAVOK \n"
                   +"TEMPO 1603/1608 3000 BR BKN006 PROB40 \n"
                   +"TEMPO 1604/1607 0400 BCFG BKN002 TX17/1512Z TN07/1605Z";
