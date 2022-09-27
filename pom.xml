@@ -54,6 +54,7 @@
         <archunit-junit5.version>0.23.1</archunit-junit5.version>
         <checkstyle.version>10.3.3</checkstyle.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-csv.version>1.8</commons-csv.version>
         <hamcrest.version>2.2</hamcrest.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <junit.version>5.9.0</junit.version>
@@ -66,7 +67,6 @@
         <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
-        <opencsv.version>5.7.0</opencsv.version>
         <pitest-junit5-plugin.version>1.0.0</pitest-junit5-plugin.version>
         <pitest-maven.version>1.9.5</pitest-maven.version>
         <slf4j-nop.version>2.0.1</slf4j-nop.version>
@@ -86,9 +86,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.opencsv</groupId>
-                <artifactId>opencsv</artifactId>
-                <version>${opencsv.version}</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>${commons-csv.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>

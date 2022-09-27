@@ -23,13 +23,13 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.github.mivek</groupId>
-            <artifactId>metarParser-entities</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>metarParser-entities</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
