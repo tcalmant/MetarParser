@@ -17,6 +17,7 @@
         <module>metarParser-spi</module>
         <module>metarParser-parsers</module>
         <module>metarParser-services</module>
+        <module>metarParser-osgi</module>
     </modules>
 
 
