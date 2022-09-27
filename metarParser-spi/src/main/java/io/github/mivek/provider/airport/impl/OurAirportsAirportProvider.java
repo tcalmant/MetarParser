@@ -1,15 +1,12 @@
 package io.github.mivek.provider.airport.impl;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,17 +58,11 @@ public final class OurAirportsAirportProvider implements AirportProvider {
      * @throws URISyntaxException     when the URI is invalid
      */
     public void buildCountries() throws URISyntaxException, IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI(COUNTRIES_URI))
-                .GET()
-                .version(HttpClient.Version.HTTP_2)
-                .timeout(Duration.ofSeconds(5))
-                .build();
-
-        HttpResponse<InputStream> response = HttpClient.newBuilder()
-                .build()
-                .send(request, HttpResponse.BodyHandlers.ofInputStream());
-        try (CSVParser reader = csvFormat.parse(new InputStreamReader(response.body(), StandardCharsets.UTF_8))) {
+    	URL url = new URI(COUNTRIES_URI).toURL();
+        
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    	conn.setConnectTimeout(5000);
+        try (CSVParser reader = csvFormat.parse(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
         	for(CSVRecord record : reader) {
         		Country c = new Country();
         		c.setName(record.get("name"));
@@ -87,18 +78,12 @@ public final class OurAirportsAirportProvider implements AirportProvider {
      * @throws URISyntaxException     when the URI is invalid
      */
     public void buildAirport() throws URISyntaxException, IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI(AIRPORT_URI))
-                .GET()
-                .version(HttpClient.Version.HTTP_2)
-                .timeout(Duration.ofSeconds(5))
-                .build();
-
-        HttpResponse<InputStream> response = HttpClient.newBuilder()
-                .build()
-                .send(request, HttpResponse.BodyHandlers.ofInputStream());
+URL url = new URI(AIRPORT_URI).toURL();
         
-        try (CSVParser reader = csvFormat.parse(new InputStreamReader(response.body(), StandardCharsets.UTF_8))) {
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    	conn.setConnectTimeout(5000);
+        
+        try (CSVParser reader = csvFormat.parse(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
         	for(CSVRecord record : reader) {
                 Airport airport = new Airport();
                 airport.setIcao(record.get("ident"));

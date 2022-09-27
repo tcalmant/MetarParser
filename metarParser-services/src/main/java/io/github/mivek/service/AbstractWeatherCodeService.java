@@ -1,13 +1,18 @@
 package io.github.mivek.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
 import io.github.mivek.exception.ErrorCodes;
 import io.github.mivek.exception.ParseException;
 import io.github.mivek.model.AbstractWeatherCode;
 import io.github.mivek.parser.AbstractWeatherCodeParser;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
 
 /**
  * Abstract service.
@@ -56,11 +61,10 @@ public abstract class AbstractWeatherCodeService<T extends AbstractWeatherCode> 
      * @return The request object ready to use.
      * @throws URISyntaxException When URI is invalid
      */
-    HttpRequest buildRequest(final String website) throws URISyntaxException {
-        return HttpRequest.newBuilder()
-                .uri(new URI(website))
-                .GET()
-                .version(HttpClient.Version.HTTP_2)
-                .build();
+    BufferedReader buildRequest(final String website) throws IOException, URISyntaxException {
+        URL url = new URI(website).toURL();
+        
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        return new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
     }
 }

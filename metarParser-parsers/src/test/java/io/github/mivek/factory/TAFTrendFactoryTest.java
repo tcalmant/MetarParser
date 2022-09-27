@@ -29,6 +29,6 @@ class TAFTrendFactoryTest {
   @Test
   void testCreateInvalid() {
     Optional<TafTrend> trend = new TAFTrendFactory().create("QWEERTY");
-    assertTrue(trend.isEmpty());
+    assertTrue(!trend.isPresent());
   }
 }
