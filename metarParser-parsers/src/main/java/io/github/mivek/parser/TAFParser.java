@@ -11,8 +11,12 @@ import io.github.mivek.model.TemperatureDated;
 import io.github.mivek.model.trend.AbstractTafTrend;
 import io.github.mivek.model.trend.validity.AbstractValidity;
 import io.github.mivek.utils.Converter;
+
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -122,7 +126,7 @@ public final class TAFParser extends AbstractWeatherCodeParser<TAF> {
         if (lineTokens.length > 1) {
             // often temperatures are set in the end of the TAF report
             String[] last = lineTokens[lines.length - 1];
-            List<String> temperatures = Arrays.stream(last).filter(code -> code.startsWith(TX) || code.startsWith(TN)).toList();
+            List<String> temperatures = Arrays.stream(last).filter(code -> code.startsWith(TX) || code.startsWith(TN)).collect(toList());
             if (!temperatures.isEmpty()) {
                 lineTokens[0] = Stream.concat(Arrays.stream(lineTokens[0]), temperatures.stream()).toArray(String[]::new);
                 lineTokens[lines.length - 1] = Arrays.stream(last).filter(code -> !code.startsWith(TX) && !code.startsWith(TN)).toArray(String[]::new);

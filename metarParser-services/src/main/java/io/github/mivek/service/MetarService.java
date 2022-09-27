@@ -1,16 +1,13 @@
 package io.github.mivek.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.stream.Collectors;
+
 import io.github.mivek.exception.ParseException;
 import io.github.mivek.model.Metar;
 import io.github.mivek.parser.MetarParser;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Class representing the service for metar.
@@ -40,12 +37,9 @@ public final class MetarService extends AbstractWeatherCodeService<Metar> {
         checkIcao(icao);
         String website = NOAA_METAR_URL + icao.toUpperCase()
                 + ".TXT";
-        HttpRequest request = buildRequest(website);
-
-        HttpResponse<Stream<String>> response = HttpClient.newBuilder()
-                .build()
-                .send(request, HttpResponse.BodyHandlers.ofLines());
-        return getParser().parse(response.body().skip(1).collect(Collectors.joining()));
+       try(BufferedReader br = buildRequest(website)) {
+    	   return getParser().parse(br.lines().skip(1).collect(Collectors.joining()));
+       }
     }
 
     /**
